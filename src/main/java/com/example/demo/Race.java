@@ -12,17 +12,15 @@ public class Race {
     private String date;
     private String circuit;
 
-    // ✅ Пустой конструктор (важно для Spring Boot!)
+  
     public Race() {}
 
-    // ✅ Конструктор с параметрами
     public Race(String name, String date, String circuit) {
         this.name = name;
         this.date = date;
         this.circuit = circuit;
     }
 
-    // ✅ Геттеры и сеттеры
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getDate() { return date; }
