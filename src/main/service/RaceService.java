@@ -1,23 +1,38 @@
-package com.example.demo;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package main.service;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
-@Service
-public class RaceService {
-    @Autowired
-    private RaceRepository raceRepository;
+/**
+ * Service interface for race entity
+ * Defines methods for CRUD operations and business logic
+ */
 
-    public void saveRace(Race race) {
-        raceRepository.save(race);
-    }
+public interface RaceService {
 
-    public void deleteRace(Long id) {
-        raceRepository.deleteById(id);
-    }
+    /**
+     * Saves Race entity
+     * @param race 
+     */
 
-    public List<Race> getAllRaces() {
-        return raceRepository.findAll();
-    }
+    void SaveRace(Race race);
+
+    /**
+     * get all the races
+     * @return List of all the Races
+     */
+    List<Race> getAllRaces();
+
+    /**
+     * Updates an existing race entity
+     * @param race the race which will be updated
+     * @param id the id of the race that will be updated
+     * @return the updated race entity
+     */
+    Race updateRace(Race Race, Long id);
+
+    /**
+     * Deletes a race entity by it's id
+     * @param id the id
+     */
+
+    void deleteRace(Long id);
 }
