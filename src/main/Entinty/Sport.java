@@ -11,7 +11,7 @@ import java.util.*;
 @NoArgsConstructor // Generates an empty constructor
 @Builder // Provides a builder() method to build objects
 @Entity
-public class Sport {
+public abstract class Sport {
     @Id // 
     @GeneratedValue(strategy = GenerationType.AUTO) // Auto-generate the primary key
     private Long id;
