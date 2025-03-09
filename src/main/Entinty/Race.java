@@ -20,28 +20,17 @@ public class Race {
     private String date;
     private String circuit;
 
-<<<<<<< HEAD:src/main/java/com/example/demo/Race.java
   
     public Race() {}
 
-=======
-/*     // ✅ Empty constructor (important for Spring Boot!)
-    public Race() {}
-
-    // ✅ constructor
->>>>>>> test-jo:src/main/Entinty/Race.java
     public Race(String name, String date, String circuit) {
         this.name = name;
         this.date = date;
         this.circuit = circuit;
     } */
 
-<<<<<<< HEAD:src/main/java/com/example/demo/Race.java
-    public Long getId() { return id; }
-=======
     // ✅ Getters and Setters
 /*     public Long getId() { return id; }
->>>>>>> test-jo:src/main/Entinty/Race.java
     public String getName() { return name; }
     public String getDate() { return date; }
     public String getCircuit() { return circuit; }
