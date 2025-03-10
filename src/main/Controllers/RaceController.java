@@ -1,6 +1,12 @@
 package com.example.demo;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 import java.util.List;
 
 @RestController // Controller + ResponseBody (returns JSON)
@@ -32,7 +38,7 @@ public class RaceController {
     */
     @DeleteMapping("/delete/{id}")
     public String deleteRace(@PathVariable Long id) {
-        raceService.deleteRace(id);
+        raceService.deleteRaceById(id);
         return "Race deleted";
     }
 
@@ -55,5 +61,14 @@ public class RaceController {
     @PutMapping("/update/{id}")
     public Race updateRace(@PathVariable("id") Long id, @RequestBody Race race){
         return raceService.updateRace(race, id);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Race> getRaces(@PathVariable("id") Long id){
+        Race race = raceService.getRaceByID(id);
+        if(race == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); //Error 204 no content
+        }
+        return new ResponseEntity<>(race, HttpStatus.OK);
     }
 }

@@ -20,25 +20,5 @@ public class Race {
     private String date;
     private String circuit;
 
-/*     // ✅ Empty constructor (important for Spring Boot!)
-    public Race() {}
-
-    // ✅ constructor
-    public Race(String name, String date, String circuit) {
-        this.name = name;
-        this.date = date;
-        this.circuit = circuit;
-    } */
-
-    // ✅ Getters and Setters
-/*     public Long getId() { return id; }
-    public String getName() { return name; }
-    public String getDate() { return date; }
-    public String getCircuit() { return circuit; }
-
-    public void setId(Long id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
-    public void setDate(String date) { this.date = date; }
-    public void setCircuit(String circuit) { this.circuit = circuit; } */
 }
 
