@@ -33,7 +33,7 @@ app.get("/api/matches", async (req, res) => {
   }
 });
 
-// Serve static assets in production
+//Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
