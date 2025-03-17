@@ -11,14 +11,11 @@ import jakarta.persistence.*;
 @Builder // Provides a builder() method to build objects
 @Entity
 @Table(name = "races")
-public class Race {
+public class Race extends Sport{
     @Id // 
     @GeneratedValue(strategy = GenerationType.AUTO) // Auto-generate the primary key
-    private Long id;
-
-    private String name;
-    private String date;
     private String circuit;
+<<<<<<< HEAD
 
   
     public Race() {}
@@ -39,5 +36,7 @@ public class Race {
     public void setName(String name) { this.name = name; }
     public void setDate(String date) { this.date = date; }
     public void setCircuit(String circuit) { this.circuit = circuit; } */
+=======
+>>>>>>> 883d00ffa0bcdd28c08d0b05ee50599574346e62
 }
 
