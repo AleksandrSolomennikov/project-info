@@ -20,7 +20,7 @@ app.listen(PORT, () => {
 
 app.get("/update-db", (req, res) => {
   loadData();
-  res.send("🔄 База обновляется, смотри логи в консоли!");
+  res.send("🔄 Database is being updated, see the logs in console!");
 });
 
 app.get("/api/player", getplayer);
