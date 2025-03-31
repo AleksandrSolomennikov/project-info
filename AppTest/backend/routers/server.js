@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import axios from "axios";
 import path from "path";
 import cors from "cors";
-import { loadData } from "../database/insertData.js" ;
 
 //functions
 import { getplayer } from "../Controllers/match.controller.js";
+import { loadData } from "../database/insertData.js" ;
 
 dotenv.config();
 

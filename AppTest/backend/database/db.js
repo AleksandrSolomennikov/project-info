@@ -1,16 +1,16 @@
 const sqlite3 = await import("sqlite3");
 const { Database } = sqlite3.default;
 
-// Подключаемся к базе (файл будет создан, если его нет)
+// Connecting to the database (file will be created if it doesn't exist)
 const db = new Database("database/football.db", (err) => {
   if (err) {
-    console.error("Ошибка подключения к базе:", err.message);
+    console.error("Database connection error:", err.message);
   } else {
-    console.log("📂 Подключено к базе данных SQLite");
+    console.log("📂 Database connection is done, SQLite");
   }
 });
 
-// Создаём таблицы, если их ещё нет
+// Creating tables if they don't exist
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS teams (
@@ -34,5 +34,5 @@ db.serialize(() => {
   `);
 });
 
-//module.exports = db; // Экспортируем подключение
+//module.exports = db; 
 export default db;
