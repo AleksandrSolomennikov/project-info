@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import axios from "axios";
 import path from "path";
 import cors from "cors";
+import { loadData } from "../database/insertData.js" ;
 
 //functions
 import { getplayer } from "../Controllers/match.controller.js";
@@ -11,10 +12,15 @@ import Widget from "../Controllers/widget.jsx";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log("Server running at http://localhost:", PORT);
+});
+
+app.get("/update-db", (req, res) => {
+  loadData();
+  res.send("🔄 База обновляется, смотри логи в консоли!");
 });
 
 app.get("/api/player", getplayer);

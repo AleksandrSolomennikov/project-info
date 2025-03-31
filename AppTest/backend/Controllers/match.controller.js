@@ -1,6 +1,8 @@
 import express from "express";
 import axios from "axios";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 
 dotenv.config();
 
@@ -19,15 +21,14 @@ export const getplayer = async (req, res) => {
     },
   };
 
-  /*  axios.get(URL, config).then((response) => {
-    console.log(response.data);
-    res.json(data);
-  });*/
-
   try {
     const response = await axios.get(URL, config);
-    //console.log(response.data);
-    res.json(response.data);
+    const data = response.data;
+    const filePath = path.join(process.cwd(), "data", "data.json");
+    
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
+    console.log("Data written to file");
+    res.json({message: "Data written to file", data});
   } catch (error) {
     console.error("Error fetching players:", error);
     res.status(500).json({ error: "Failed to fetch players" });
