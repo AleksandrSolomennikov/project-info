@@ -3,11 +3,14 @@ import dotenv from "dotenv";
 import axios from "axios";
 import path from "path";
 import cors from "cors";
-import { loadData } from "../database/insertData.js" ;
 
 //functions
 import { getplayer } from "../Controllers/match.controller.js";
+<<<<<<< HEAD
 import Widget from "../Controllers/widget.jsx";
+=======
+import { loadData } from "../database/insertData.js" ;
+>>>>>>> 2546818 (Comments changes pt. 3)
 
 dotenv.config();
 
