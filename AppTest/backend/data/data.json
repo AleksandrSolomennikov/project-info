@@ -266,6 +266,14 @@
           "photo": "https://media.api-sports.io/football/players/383770.png"
         },
         {
+          "id": 396729,
+          "name": "J. Scanlon",
+          "age": 19,
+          "number": 63,
+          "position": "Midfielder",
+          "photo": "https://media.api-sports.io/football/players/396729.png"
+        },
+        {
           "id": 344229,
           "name": "J. Moorhouse",
           "age": 20,
@@ -280,14 +288,6 @@
           "number": 76,
           "position": "Midfielder",
           "photo": "https://media.api-sports.io/football/players/389031.png"
-        },
-        {
-          "id": 396729,
-          "name": "J. Scanlon",
-          "age": 19,
-          "number": null,
-          "position": "Midfielder",
-          "photo": "https://media.api-sports.io/football/players/396729.png"
         },
         {
           "id": 288006,
