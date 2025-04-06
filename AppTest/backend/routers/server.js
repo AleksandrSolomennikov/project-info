@@ -11,6 +11,7 @@ import fs from "fs";
 import { getplayer } from "../Controllers/match.controller.js";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Widget from "../Controllers/widget.jsx";
 =======
 import { loadData } from "../database/insertData.js" ;
@@ -20,6 +21,11 @@ import { loadData } from "../database/insertData.js";
 import { clearData } from "../database/insertData.js";
 import { requestBuilder } from "./api.js";
 >>>>>>> 484f562 (API changes + cleaing function)
+=======
+import { loadData } from "../database/insertData.js";
+import { clearData } from "../database/insertData.js";
+import { requestBuilder } from "./api.js";
+>>>>>>> 63934894cb8deacb8b52a9af7859bd4f459c8223
 
 dotenv.config();
 
@@ -37,9 +43,12 @@ app.get("/main", (req, res) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.get("/api/player", getplayer);
 app.get("api/match", Widget);
 =======
+=======
+>>>>>>> 63934894cb8deacb8b52a9af7859bd4f459c8223
 app.get("/main/stats", async (req, res) => {
   try {
     const data = await requestBuilder("football", "teams", "Manchester United");
