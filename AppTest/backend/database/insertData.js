@@ -1,5 +1,7 @@
 import fs from "fs";
-import db from "./db.js";
+import db_football from "./db.js";
+import db_basketball from "./db.js";
+import { db_formula1 } from "./db.js";
 
 export const loadData = () => {
   fs.readFile("data/data.json", "utf8", (err, data) => {
@@ -12,12 +14,12 @@ export const loadData = () => {
     const teamData = jsonData.response[0].team;
     const playersData = jsonData.response[0].players;
 
-    db.serialize(() => {
-      db.run("DELETE FROM teams;");
-      db.run("DELETE FROM players;");
+    db_football.serialize(() => {
+      db_football.run("DELETE FROM teams;");
+      db_football.run("DELETE FROM players;");
 
       // Inserting teams
-      db.run(
+      db_football.run(
         `INSERT INTO teams (id, name, logo) VALUES (?, ?, ?)`,
         [teamData.id, teamData.name, teamData.logo],
         function (err) {
@@ -28,9 +30,8 @@ export const loadData = () => {
 
       // Inerting players
       playersData.forEach((player) => {
-        db.run(
-          `INSERT INTO players (id, name, age, number, position, photo, team_id) 
-          VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        db_football.run(
+          `INSERT INTO players (id, name, age, number, position, photo, team_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
           [player.id, player.name, player.age, player.number, player.position, player.photo, teamData.id],
           (err) => {
             if (err) return console.error("Player insert error:", err);
@@ -45,32 +46,32 @@ export const loadData = () => {
 
 
 export const clearData = () => {
-    db.serialize(() => {
-        db.run('PRAGMA foreign_keys = OFF;');
+    db_football.serialize(() => {
+        db_football.run('PRAGMA foreign_keys = OFF;');
         
-        db.all("SELECT name FROM sqlite_master WHERE type='table';", (err, tables) => {
+        db_football.all("SELECT name FROM sqlite_master WHERE type='table';", (err, tables) => {
             if (err) {
-                console.error('Ошибка при получении списка таблиц:', err.message);
+                console.error('Listing tables error:', err.message);
                 return;
             }
             
             tables.forEach((table) => {
                 const tableName = table.name;
-                db.run(`DROP TABLE IF EXISTS "${tableName}";`, (err) => {
+                db_football.run(`DROP TABLE IF EXISTS "${tableName}";`, (err) => {
                     if (err) {
-                        console.error(`Ошибка при удалении таблицы ${tableName}:`, err.message);
+                        console.error(`Table deleting error ${tableName}:`, err.message);
                     } else {
-                        console.log(`Таблица ${tableName} удалена.`);
+                        console.log(`Table ${tableName} is deleted.`);
                     }
                 });
             });
         });
         
-        db.run('VACUUM;', (err) => {
+        db_football.run('VACUUM;', (err) => {
             if (err) {
-                console.error('Ошибка при выполнении VACUUM:', err.message);
+                console.error('Executing error VACUUM:', err.message);
             } else {
-                console.log('База данных очищена.');
+                console.log('Database is cleaned.');
             }
         });
     });

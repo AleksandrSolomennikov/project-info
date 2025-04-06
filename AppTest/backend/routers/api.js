@@ -96,7 +96,7 @@ apiRouter.get("/fetch-data", async (req, res) => {
   const { sport, dataType, query } = req.query;
 
 
-  /*try {
+  try {
     const data = await requestBuilder(sport, dataType, query);
     const filePath = path.join(process.cwd(), "data", "data.json");
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
@@ -105,7 +105,7 @@ apiRouter.get("/fetch-data", async (req, res) => {
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Failed to fetch data" });
-  }*/
+  }
 });
 
 export default apiRouter;
