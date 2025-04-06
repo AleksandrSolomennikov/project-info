@@ -17,7 +17,7 @@ export const getplayer = async (req, res) => {
     params: { team: "33" },
     headers: {
       "x-rapidapi-key": API_KEY,
-      "x-rapidapi-host": "v3.football.api-sports.io",
+      "x-rapidapi-host": "v1.football.api-sports.io",
     },
   };
 

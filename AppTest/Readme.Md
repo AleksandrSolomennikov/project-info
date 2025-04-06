@@ -13,3 +13,7 @@ if not installed or not working, run the command : `npm install tailwindcss@late
 ## HeadLessUI :
 
 if not installed or not working, run the command : `npm install @headlessui/react` or `npm install @headlessui/react framer-motion clsx`.
+
+## Testing :
+
+to be able to run tests in our development environment we need to install a testing library. For this project, we used JEST. to install it, you can to either `/backend` directory or `/AllSportsHub` directory for the frontend run the following command : `npm install --save-dev jest supertest axios jest-mock dotenv`
