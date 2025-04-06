@@ -6,7 +6,7 @@ import cors from "cors";
 
 //functions
 import { getplayer } from "../Controllers/match.controller.js";
-
+import { getTeamStats } from "../Controllers/nba.match.controllers.js";
 dotenv.config();
 
 const app = express();
@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/api/player", getplayer);
-app.get("api/match");
+app.get("/api/team/statistics", getTeamStats);
 
 // Middleware
 app.use(cors()); // Enables CORS, allowing frontend apps from different domains to access this backend.
