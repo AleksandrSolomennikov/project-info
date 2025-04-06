@@ -42,3 +42,37 @@ export const loadData = () => {
   });
 };
 
+
+
+export const clearData = () => {
+    db.serialize(() => {
+        db.run('PRAGMA foreign_keys = OFF;');
+        
+        db.all("SELECT name FROM sqlite_master WHERE type='table';", (err, tables) => {
+            if (err) {
+                console.error('Ошибка при получении списка таблиц:', err.message);
+                return;
+            }
+            
+            tables.forEach((table) => {
+                const tableName = table.name;
+                db.run(`DROP TABLE IF EXISTS "${tableName}";`, (err) => {
+                    if (err) {
+                        console.error(`Ошибка при удалении таблицы ${tableName}:`, err.message);
+                    } else {
+                        console.log(`Таблица ${tableName} удалена.`);
+                    }
+                });
+            });
+        });
+        
+        db.run('VACUUM;', (err) => {
+            if (err) {
+                console.error('Ошибка при выполнении VACUUM:', err.message);
+            } else {
+                console.log('База данных очищена.');
+            }
+        });
+    });
+}
+
