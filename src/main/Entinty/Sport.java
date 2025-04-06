@@ -1,19 +1,24 @@
 package com.example.demo;
 import jakarta.persistence.*;
+import java.util.*;
 
 /**
- * Will represent a race entity in the application
+ * Will represent a Sport entity in the application
  * Contains the name, date, and circuit
  */
 @Data // Generates Getters, Setters, toString, equals, and hashCode
-@AllArgsConstructor // Generates a constructor with all arguments
+@AllArgsConstructor //  Generates a constructor with all arguments
 @NoArgsConstructor // Generates an empty constructor
 @Builder // Provides a builder() method to build objects
 @Entity
-@Table(name = "races")
-public class Race extends Sport{
+public class Sport {
     @Id // 
     @GeneratedValue(strategy = GenerationType.AUTO) // Auto-generate the primary key
-    private String circuit;
+    private Long id;
+    private String name;
+    private String category; //team, individual, or Motosport
+    private String description;
+    private LocalDateTime createDate; 
+    private LocalDateTime updatedAt;
 }
 
