@@ -16,7 +16,16 @@ db_football.serialize(() => {
     CREATE TABLE IF NOT EXISTS teams (
       id INTEGER PRIMARY KEY,
       name TEXT,
+      country TEXT,
+      founded INTEGER,
       logo TEXT
+    )
+  `);
+
+  db_football.run(`
+    CREATE TABLE IF NOT EXISTS seasons (
+      id INTEGER PRIMARY KEY,
+      name TEXT
     )
   `);
 
@@ -25,11 +34,20 @@ db_football.serialize(() => {
       id INTEGER PRIMARY KEY,
       name TEXT,
       age INTEGER,
+      nationality TEXT,
       number INTEGER,
       position TEXT,
-      photo TEXT,
-      team_id INTEGER,
-      FOREIGN KEY (team_id) REFERENCES teams (id)
+      photo TEXT
+    )
+  `);
+
+  db_football.run(`
+    CREATE TABLE IF NOT EXISTS competitions (
+      id INTEGER PRIMARY KEY,
+      name TEXT,
+      type TEXT,
+      logo TEXT,
+      country TEXT
     )
   `);
 });
@@ -48,7 +66,15 @@ db_basketball.serialize(() => {
     CREATE TABLE IF NOT EXISTS teams (
       id INTEGER PRIMARY KEY,
       name TEXT,
+      country TEXT,
       logo TEXT
+    )
+  `);
+
+  db_basketball.run(`
+    CREATE TABLE IF NOT EXISTS seasons (
+      id INTEGER PRIMARY KEY,
+      name TEXT
     )
   `);
 
@@ -57,11 +83,19 @@ db_basketball.serialize(() => {
       id INTEGER PRIMARY KEY,
       name TEXT,
       age INTEGER,
+      country TEXT,
       number INTEGER,
-      position TEXT,
-      photo TEXT,
-      team_id INTEGER,
-      FOREIGN KEY (team_id) REFERENCES teams (id)
+      position TEXT
+    )
+  `);
+
+  db_basketball.run(`
+    CREATE TABLE IF NOT EXISTS competitions (
+      id INTEGER PRIMARY KEY,
+      name TEXT,
+      type TEXT,
+      logo TEXT,
+      country TEXT
     )
   `);
 });
@@ -83,7 +117,17 @@ db_formula1.serialize(() => {
     CREATE TABLE IF NOT EXISTS teams (
       id INTEGER PRIMARY KEY,
       name TEXT,
+      base TEXT,
+      world_championships INTEGER,
+      president TEXT,
       logo TEXT
+    )
+  `);
+
+  db_formula1.run(`
+    CREATE TABLE IF NOT EXISTS seasons (
+      id INTEGER PRIMARY KEY,
+      name TEXT
     )
   `);
 
@@ -91,12 +135,21 @@ db_formula1.serialize(() => {
     CREATE TABLE IF NOT EXISTS players (
       id INTEGER PRIMARY KEY,
       name TEXT,
-      age INTEGER,
+      abbr TEXT,
+      nationality TEXT,
+      birthdate TEXT,
+      birthplace TEXT,
       number INTEGER,
-      position TEXT,
-      photo TEXT,
-      team_id INTEGER,
-      FOREIGN KEY (team_id) REFERENCES teams (id)
+      image TEXT
+    )
+  `);
+
+  db_formula1.run(`
+    CREATE TABLE IF NOT EXISTS competitions (
+      id INTEGER PRIMARY KEY,
+      name TEXT,
+      country TEXT,
+      city TEXT
     )
   `);
 });
