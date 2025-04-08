@@ -32,11 +32,13 @@ export const requestBuilder = async (sport, dataType, query) => {
     case "players":
         if (sport === "formula 1") {
             url = `${url}/drivers`;
-            params = { name: query };
+            params = { search: query };
+            break;
         }
         if (sport === "basketball") {
             url = `${url}/players`;
             params = { search: query };
+            break;
         }
         else {
             url = `${url}/players/profiles`;
@@ -53,6 +55,7 @@ export const requestBuilder = async (sport, dataType, query) => {
       if (sport === "formula 1" || sport === "basketball") {
         url = `${url}/seasons`;
         params = {};
+        break;
       } 
       else {
         url = `${url}/leagues/seasons`;
@@ -64,7 +67,9 @@ export const requestBuilder = async (sport, dataType, query) => {
       if (sport === "formula 1") {
         url = `${url}/competitions`;
         params = { name: query };
-      } else {
+        break;
+      } 
+      else {
         url = `${url}/leagues`;
         params = { name: query };
       }
