@@ -7,7 +7,6 @@ import apiRouter from "./api.js";
 import fs from "fs";
 
 //functions
-import { getplayer } from "../Controllers/match.controller.js";
 import { loadData } from "../database/insertData.js";
 import { clearData } from "../database/insertData.js";
 import { requestBuilder } from "./api.js";
@@ -21,13 +20,16 @@ app.listen(PORT, () => {
   console.log("Server running at http://localhost:", PORT);
 });
 
-app.use("/api", apiRouter);
+app.use(cors()); // Enables CORS, allowing frontend apps from different domains to access this backend.
+app.use(express.json()); // Allows the server to parse incoming JSON data in requests (e.g., req.body).
+app.use("/api", apiRouter); // Routes all requests starting with "/api" to the apiRouter.
 
-app.get("/main", (req, res) => {
+
+/*app.get("/main", (req, res) => {
   res.send("⚠️ Here will be the main page, we are working on it! ⚠️");
-});
+});*/
 
-app.get("/main/stats", async (req, res) => {
+/*app.get("/main/stats", async (req, res) => {
   try {
     const data = await requestBuilder(sport, dataType, query);
     const filePath = path.join(process.cwd(), "data", "data.json");
@@ -39,16 +41,14 @@ app.get("/main/stats", async (req, res) => {
   }
 
   loadData(sport, dataType);
-});
+});*/
 
-app.get("/clear", async (req, res) => {
+/*app.get("/clear", async (req, res) => {
   clearData();
   res.send("⚠️ Database cleared!");
-});
-
-app.get("api/match");
+});*/
 
 // Middleware
-app.use(cors()); // Enables CORS, allowing frontend apps from different domains to access this backend.
-app.use(express.json()); // Allows the server to parse incoming JSON data in requests (e.g., req.body).
-app.use(express.static(path.join(process.cwd(), "AllSportsHub"))); // Serves static files from the "public" directory.
+
+
+//app.use(express.static(path.join(process.cwd(), "frontend"))); // Serves static files from the "public" directory.

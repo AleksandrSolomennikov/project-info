@@ -239,9 +239,9 @@ export const loadData = (sport, dataType) => {
               return;
           }
         });
-      default:
+      /*default:
         console.error("❌ Invalid sport type:", sport);
-        return;
+        return;*/
     }
   });
 };
