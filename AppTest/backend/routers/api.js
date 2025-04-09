@@ -13,9 +13,8 @@ const API_KEY = process.env.API_KEY;
 apiRouter.post('/create-request', async (req, res) => {
 
   const { field1, field2, inputText } = req.body;
-  console.log('Получены данные:', { field1, field2, inputText });
+  console.log('Received data:', { field1, field2, inputText });
 
-  // Здесь можешь сохранить в базу или сделать обработку
 
   try {
     const data = await requestBuilder(field1, field2, inputText);
@@ -51,10 +50,9 @@ apiRouter.post('/create-request', async (req, res) => {
 
 
 apiRouter.get('/get-data', (req, res) => {
-  // Здесь подключись к своей базе и достань данные
   const dummyData = [
-    { id: 1, name: 'Данные A' },
-    { id: 2, name: 'Данные B' },
+    { id: 1, name: 'Data A' },
+    { id: 2, name: 'Data B' },
   ];
   res.json(dummyData);
 });

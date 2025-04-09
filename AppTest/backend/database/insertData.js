@@ -33,14 +33,10 @@ export const loadData = (sport, dataType) => {
               break;
 
             case "players":
-              const playerData = jsonData.response[0].player; // много данных
-              const nationalityData = jsonData.response[0].nationality; // остальное по одному значению
-              const numberData = jsonData.response[0].number;
-              const positionData = jsonData.response[0].position;
-              const photoData = jsonData.response[0].photo;
+              const playerData = jsonData.response[0].player; 
               db_football.run(
                 "INSERT INTO players (id, name, age, nationality, number, position, photo) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                [playerData.id, playerData.name, playerData.age, nationalityData, numberData, positionData, photoData],
+                [playerData.id, playerData.name, playerData.age, playerData.nationality, playerData.number, playerData.position, playerData.photo],
                 function (err) {
                   if (err) return console.error("Player insert error:", err);
                   console.log(`✅ Player is inserted: ${playerData.name}`);
@@ -82,6 +78,8 @@ export const loadData = (sport, dataType) => {
               return;
           }
         });
+        break;
+      
       case "basketball":
         db_basketball.serialize(() => {
           db_basketball.run("DELETE FROM teams;");
@@ -93,7 +91,7 @@ export const loadData = (sport, dataType) => {
               const idData = jsonData.response[0].id;
               const nameData = jsonData.response[0].name;
               const logoData = jsonData.response[0].logo;
-              const countryData = jsonData.response[0].country; // много данных
+              const countryData = jsonData.response[0].country;
               db_basketball.run(
                 `INSERT INTO teams (id, name, country, logo) VALUES (?, ?, ?, ?)`,
                 [idData, nameData, countryData.name, logoData],
@@ -163,6 +161,8 @@ export const loadData = (sport, dataType) => {
               return;
           }
         });
+
+        break;
       case "formula 1":
         db_formula1.serialize(() => {
           db_formula1.run("DELETE FROM teams;");
@@ -239,6 +239,7 @@ export const loadData = (sport, dataType) => {
               return;
           }
         });
+        break;
       /*default:
         console.error("❌ Invalid sport type:", sport);
         return;*/
