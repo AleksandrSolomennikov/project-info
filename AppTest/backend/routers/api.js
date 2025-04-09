@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
 import { loadData } from "../database/insertData.js";
+import { db_basketball, db_football, db_formula1 } from "../database/db.js";
 
 dotenv.config();
 const apiRouter = express.Router();
@@ -21,6 +22,11 @@ apiRouter.post('/create-request', async (req, res) => {
     const filePath = path.join(process.cwd(), "data", "data.json");
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
     //res.send(data);
+
+    // 🔸 Сохраняем параметры field1 и field2
+    const metaPath = path.join(process.cwd(), "data", "meta.json");
+    fs.writeFileSync(metaPath, JSON.stringify({ field1, field2 }, null, 2), "utf8");
+
   } catch (error) {
     console.error("Error fetching stats:", error);
     res.status(500).send("Failed to fetch stats");
@@ -30,6 +36,45 @@ apiRouter.post('/create-request', async (req, res) => {
 
   return res.json({ status: 'ok' });
 });
+
+
+apiRouter.get('/get-data', (req, res) => {
+  const metaPath = path.join(process.cwd(), "data", "meta.json");
+
+  if (!fs.existsSync(metaPath)) {
+    return res.status(400).json({ error: 'Нет сохранённых параметров запроса' });
+  }
+
+  const { field1, field2 } = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+
+  let db;
+  switch (field1) {
+    case "formula 1":
+      db = db_formula1;
+      break;
+    case "football":
+      db = db_football;
+      break;
+    case "basketball":
+      db = db_basketball;
+      break;
+    default: return res.status(400).json({ error: 'Неизвестная база' });
+  }
+
+  const table = field2;
+
+  const sql = `SELECT * FROM ${table}`;
+
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error('Ошибка при чтении:', err);
+      return res.status(500).json({ error: 'Ошибка при чтении из базы' });
+    }
+    res.json(rows);
+  });
+
+});
+
 
 
 /*apiRouter.get("/fetch-data", async (req, res) => {
@@ -49,13 +94,6 @@ apiRouter.post('/create-request', async (req, res) => {
 });*/
 
 
-apiRouter.get('/get-data', (req, res) => {
-  const dummyData = [
-    { id: 1, name: 'Data A' },
-    { id: 2, name: 'Data B' },
-  ];
-  res.json(dummyData);
-});
 
 
 
@@ -107,7 +145,7 @@ export const requestBuilder = async (sport, dataType, query) => {
 
     case "teams":
       url = `${url}/teams`;
-      params = { name: query };
+      params = { search: query };
       break;
 
     case "seasons":
@@ -125,12 +163,12 @@ export const requestBuilder = async (sport, dataType, query) => {
     case "competitions":
       if (sport === "formula 1") {
         url = `${url}/competitions`;
-        params = { name: query };
+        params = { search: query };
         break;
       } 
       else {
         url = `${url}/leagues`;
-        params = { name: query };
+        params = { search: query };
       }
       break;
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Stats() {
   const [field1, setField1] = useState('');
@@ -75,6 +76,13 @@ export default function Stats() {
           Submit
         </button>
       </form>
+
+      <Link
+        to="/main/stats/data"
+        className="px-6 py-3 bg-blue-500 text-white py-2 rounded-md shadow-md hover:bg-blue-600 transition duration-300 text-center mt-4"
+      >
+        Move
+      </Link>
 
       {response && (
         <div className="mt-6 text-center text-green-600">
