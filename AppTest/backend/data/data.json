@@ -1,22 +1,34 @@
 {
-  "get": "seasons",
-  "parameters": [],
+  "get": "teams",
+  "parameters": {
+    "search": "Amkar"
+  },
   "errors": [],
-  "results": 14,
+  "results": 1,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
   "response": [
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025
+    {
+      "team": {
+        "id": 1076,
+        "name": "Amkar",
+        "code": "AMK",
+        "country": "Russia",
+        "founded": 1994,
+        "national": false,
+        "logo": "https://media.api-sports.io/football/teams/1076.png"
+      },
+      "venue": {
+        "id": 2840,
+        "name": "Stadion Zvezda",
+        "address": "ul. Kujbysheva 95",
+        "city": "Perm&apos;",
+        "capacity": 17000,
+        "surface": "artificial turf",
+        "image": "https://media.api-sports.io/football/venues/2840.png"
+      }
+    }
   ]
 }
