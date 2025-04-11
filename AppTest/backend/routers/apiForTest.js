@@ -1,10 +1,11 @@
-import express from "express";
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import dotenv from "dotenv";
-import { loadData } from "../database/insertData.js";
-import { db_basketball, db_football, db_formula1 } from "../database/db.js";
+//for testing 
+const express = require("express");
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+const dotenv = require("dotenv");
+const { loadData } = require("../database/insertDataForTest.js");
+const { db_basketball, db_football, db_formula1 } = require("../database/dbForTest.js");
 
 dotenv.config();
 const apiRouter = express.Router();
@@ -23,6 +24,7 @@ apiRouter.post('/create-request', async (req, res) => {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
     //res.send(data);
 
+    // 🔸 Сохраняем параметры field1 и field2
     const metaPath = path.join(process.cwd(), "data", "meta.json");
     fs.writeFileSync(metaPath, JSON.stringify({ field1, field2 }, null, 2), "utf8");
 
@@ -41,7 +43,7 @@ apiRouter.get('/get-data', (req, res) => {
   const metaPath = path.join(process.cwd(), "data", "meta.json");
 
   if (!fs.existsSync(metaPath)) {
-    return res.status(400).json({ error: 'No saved request parametres' });
+    return res.status(400).json({ error: 'No saved request parameters' });
   }
 
   const { field1, field2 } = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
@@ -57,7 +59,7 @@ apiRouter.get('/get-data', (req, res) => {
     case "basketball":
       db = db_basketball;
       break;
-    default: return res.status(400).json({ error: 'Unknown base' });
+    default: return res.status(400).json({ error: 'Unknown Database' });
   }
 
   const table = field2;
@@ -66,49 +68,23 @@ apiRouter.get('/get-data', (req, res) => {
 
   db.all(sql, [], (err, rows) => {
     if (err) {
-      console.error('Reading error:', err);
-      return res.status(500).json({ error: 'Error during reading the base' });
+      console.error('error reading : ', err);
+      return res.status(500).json({ error: 'Error reading from the database' });
     }
     res.json(rows);
   });
 
 });
 
-apiRouter.get("/clear", (req, res) => {
-  res.status(200).send("OK");
-});
-
-
-/*apiRouter.get("/fetch-data", async (req, res) => {
-  const { sport, dataType, query } = req.query;
-
-
-  try {
-    const data = await requestBuilder(sport, dataType, query);
-    const filePath = path.join(process.cwd(), "data", "data.json");
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-
-    res.json({ message: "Data written to file", data });
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    res.status(500).json({ error: "Failed to fetch data" });
-  }
-});*/
+apiRouter.get('/api/clear', (req, res) => {
+    clearData();
+    res.status(200).send('Data cleared');
+  });
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-export const requestBuilder = async (sport, dataType, query) => {
+const requestBuilder = async (sport, dataType, query) => {
   let url = "";
   let params = {};
   let host = "";
@@ -196,4 +172,7 @@ export const requestBuilder = async (sport, dataType, query) => {
   return response.data;
 };
 
-export default apiRouter;
+module.exports = {
+    requestBuilder, 
+    apiRouter,
+  };
