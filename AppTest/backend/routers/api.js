@@ -23,7 +23,6 @@ apiRouter.post('/create-request', async (req, res) => {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
     //res.send(data);
 
-    // 🔸 Сохраняем параметры field1 и field2
     const metaPath = path.join(process.cwd(), "data", "meta.json");
     fs.writeFileSync(metaPath, JSON.stringify({ field1, field2 }, null, 2), "utf8");
 
@@ -42,7 +41,7 @@ apiRouter.get('/get-data', (req, res) => {
   const metaPath = path.join(process.cwd(), "data", "meta.json");
 
   if (!fs.existsSync(metaPath)) {
-    return res.status(400).json({ error: 'Нет сохранённых параметров запроса' });
+    return res.status(400).json({ error: 'No saved request parametres' });
   }
 
   const { field1, field2 } = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
@@ -58,7 +57,7 @@ apiRouter.get('/get-data', (req, res) => {
     case "basketball":
       db = db_basketball;
       break;
-    default: return res.status(400).json({ error: 'Неизвестная база' });
+    default: return res.status(400).json({ error: 'Unknown base' });
   }
 
   const table = field2;
@@ -67,8 +66,8 @@ apiRouter.get('/get-data', (req, res) => {
 
   db.all(sql, [], (err, rows) => {
     if (err) {
-      console.error('Ошибка при чтении:', err);
-      return res.status(500).json({ error: 'Ошибка при чтении из базы' });
+      console.error('Reading error:', err);
+      return res.status(500).json({ error: 'Error during reading the base' });
     }
     res.json(rows);
   });
