@@ -21,7 +21,6 @@ apiRouter.post('/create-request', async (req, res) => {
     const data = await requestBuilder(field1, field2, inputText);
     const filePath = path.join(process.cwd(), "data", "data.json");
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-    //res.send(data);
 
     const metaPath = path.join(process.cwd(), "data", "meta.json");
     fs.writeFileSync(metaPath, JSON.stringify({ field1, field2 }, null, 2), "utf8");
@@ -77,25 +76,6 @@ apiRouter.get('/get-data', (req, res) => {
 apiRouter.get("/clear", (req, res) => {
   res.status(200).send("OK");
 });
-
-
-/*apiRouter.get("/fetch-data", async (req, res) => {
-  const { sport, dataType, query } = req.query;
-
-
-  try {
-    const data = await requestBuilder(sport, dataType, query);
-    const filePath = path.join(process.cwd(), "data", "data.json");
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-
-    res.json({ message: "Data written to file", data });
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    res.status(500).json({ error: "Failed to fetch data" });
-  }
-});*/
-
-
 
 
 

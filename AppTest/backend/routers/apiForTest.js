@@ -24,7 +24,6 @@ apiRouter.post('/create-request', async (req, res) => {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
     //res.send(data);
 
-    // 🔸 Сохраняем параметры field1 и field2
     const metaPath = path.join(process.cwd(), "data", "meta.json");
     fs.writeFileSync(metaPath, JSON.stringify({ field1, field2 }, null, 2), "utf8");
 

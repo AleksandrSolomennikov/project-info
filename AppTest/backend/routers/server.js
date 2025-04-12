@@ -27,30 +27,3 @@ app.use(express.json()); // Allows the server to parse incoming JSON data in req
 app.use("/api", apiRouter); // Routes all requests starting with "/api" to the apiRouter.
 
 
-/*app.get("/main", (req, res) => {
-  res.send("⚠️ Here will be the main page, we are working on it! ⚠️");
-});*/
-
-/*app.get("/main/stats", async (req, res) => {
-  try {
-    const data = await requestBuilder(sport, dataType, query);
-    const filePath = path.join(process.cwd(), "data", "data.json");
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-    res.send(data);
-  } catch (error) {
-    console.error("Error fetching stats:", error);
-    res.status(500).send("Failed to fetch stats");
-  }
-
-  loadData(sport, dataType);
-});*/
-
-/*app.get("/clear", async (req, res) => {
-  clearData();
-  res.send("⚠️ Database cleared!");
-});*/
-
-// Middleware
-
-
-//app.use(express.static(path.join(process.cwd(), "frontend"))); // Serves static files from the "public" directory.
