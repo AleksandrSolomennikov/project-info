@@ -12,6 +12,9 @@ export default defineConfig({
       "/clear": {
         target: "http://localhost:3000",
       },
+      "/widgets" : {
+        target : "http://localhost:3000",
+      }
     },
   },
 });
