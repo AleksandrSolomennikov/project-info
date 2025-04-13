@@ -2,17 +2,16 @@
 
 import express from "express";
 import dotenv from "dotenv";
-import axios from "axios";
-import path from "path";
+/* import axios from "axios";
+import path from "path"; */
 import cors from "cors";
 import apiRouter from "./api.js";
-import fs from "fs";
+/* import fs from "fs"; */
 
 //functions
-import { loadData } from "../database/insertData.js";
+/* import { loadData } from "../database/insertData.js";
 import { clearData } from "../database/insertData.js";
-import { requestBuilder } from "./api.js";
-import Widget from "../Controllers/widget.football.jsx";
+import { requestBuilder } from "./api.js"; */
 import WidgetFootball from "../Controllers/widget.football.jsx";
 import WidgetBasketball from "../Controllers/widget.basketball.jsx";
 import WidgetBasketballStandings from "../Controllers/widget.basketball.standings.jsx";
