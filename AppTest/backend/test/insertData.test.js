@@ -34,13 +34,11 @@ describe("loadData", () => {
       ],
     };
 
-    // Mock fs.readFile to return mock data
     fs.readFile.mockImplementation((path, encoding, callback) => {
       callback(null, JSON.stringify(mockJsonData));
     });
     await loadData("football", "teams");
 
-    // Check if the database run method is called with the correct SQL query and parameters
     expect(db_football.run).toHaveBeenCalledWith(
       `INSERT INTO teams (id, name, country, founded, logo) VALUES (?, ?, ?, ?, ?)`,
       [1, "Team A", "Country A", 1900, "logo.png"]

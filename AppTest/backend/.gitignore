@@ -7,6 +7,8 @@ build/
 .env
 node_modules
 
+**/*.json
+**/*.db
 
 ### STS ###
 .apt_generated
