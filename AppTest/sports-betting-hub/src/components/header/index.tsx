@@ -13,7 +13,7 @@ export const Header = () => {
       <div className="container flex items-center justify-between h-16 px-4">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">BetHero</h1>
+            <h1 className="text-2xl font-bold tracking-tight">AllSportsHub</h1>
           </Link>
         </div>
 
