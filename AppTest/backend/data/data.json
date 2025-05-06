@@ -1,13 +1,30 @@
 {
-  "get": "seasons",
-  "parameters": [],
-  "errors": {
-    "access": "Your account is suspended, check on https://dashboard.api-football.com."
+  "get": "teams",
+  "parameters": {
+    "search": "Red Bull Racing"
   },
-  "results": 0,
-  "paging": {
-    "current": 1,
-    "total": 1
-  },
-  "response": []
+  "errors": [],
+  "results": 1,
+  "response": [
+    {
+      "id": 1,
+      "name": "Red Bull Racing",
+      "logo": "https://media.api-sports.io/formula-1/teams/1.png",
+      "base": "Milton Keynes, United Kingdom",
+      "first_team_entry": 1997,
+      "world_championships": 6,
+      "highest_race_finish": {
+        "position": 1,
+        "number": 123
+      },
+      "pole_positions": 104,
+      "fastest_laps": 99,
+      "president": "Dietrich Mateschitz",
+      "director": "Christian Horner",
+      "technical_manager": "Pierre Waché",
+      "chassis": "RB21",
+      "engine": "Honda RBPT",
+      "tyres": "Pirelli"
+    }
+  ]
 }
